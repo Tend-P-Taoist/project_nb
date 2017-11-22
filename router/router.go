@@ -19,5 +19,9 @@ func Route( engine *gin.Engine){
 	//engine.LoadHTMLGlob("../view/templete/**")
 
 	engine.POST("/register",handler.RegisterHandler)
+	engine.POST("/registeremail",handler.RegisterByEmailHandler)
+	engine.GET("/activate/:uuid",handler.ActivateAccountHandler)
+	engine.POST("/login",handler.LoginHandler)
+	engine.GET("/sendMessage/:to",handler.SendCodeHandler)
 }
 

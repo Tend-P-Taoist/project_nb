@@ -36,22 +36,55 @@ func FindUser(user models.User) (*models.User,error) {
 }
 
 /*根据用户名查找用户*/
-func FindUserByAccount(account string) (*models.User,error){
+func FindUserByAccount(account string) ([]models.User,error){
 
-	user := models.User{}
-	c := DB.First(&user,"account = ?",account)
+	users := []models.User{}
+	c := DB.Find(&users,"account = ?",account)
 	if c.Error != nil{
 		return nil,c.Error
 	}
-	return &user,nil
+	return users,nil
+}
+
+/*根据EMAIL查找用户*/
+func FindUserByEmail(email string) ([]models.User,error){
+
+	users := []models.User{}
+	c := DB.Find(&users,"email = ?",email)
+
+	if c.Error != nil{
+		return nil,c.Error
+	}
+
+	return users,nil
+}
+
+/*根据手机查找用户*/
+func FindUserByPhoneNumber(num string) ([]models.User,error){
+
+	users := []models.User{}
+	c := DB.Find(&users,"phone_number = ?",num)
+
+	if c.Error != nil{
+		return nil,c.Error
+	}
+
+	return users,nil
 }
 
 
-func CreateUser(user models.User) error{
 
-	c := DB.Create(&user)
-	if c.Error != nil{
-		return  c.Error
-	}
-	return  nil
+
+func CreateUser(user *models.User) error{
+
+	c := DB.Create(user)
+
+	return  c.Error
+}
+
+func ActivateUserById(id int) error{
+
+	c := DB.Model(&models.User{}).Where("id = ?",id).Update("active",true)
+
+	return c.Error
 }

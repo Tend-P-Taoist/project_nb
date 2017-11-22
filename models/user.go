@@ -7,6 +7,8 @@ import (
 
 type User struct {
 
+	gorm.Model
+	Token string `gorm:"-"`
 	RealName string
 	NickName string
 	Salt string
@@ -16,12 +18,10 @@ type User struct {
 	Email string
 	Age int
 	Gender int
-	BirthDay time.Time
+	BirthDay *time.Time
 	HeadPic string
 	Active bool
-	InUse bool
 
-	gorm.Model
 }
 
 func (u User)TableName() string{
