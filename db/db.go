@@ -3,8 +3,7 @@ package db
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"../models"
-	"os/user"
+	"project_nb/models"
 )
 
 var DB *gorm.DB
@@ -84,6 +83,12 @@ func CreateUser(user *models.User) error{
 	return  c.Error
 }
 
+/*修改用户(根据id)*/
+func ModifyUser(user *models.User) error{
+
+	return DB.Update(user).Error
+}
+
 /*账号激活*/
 func ActivateUserById(id int) error{
 
@@ -94,9 +99,11 @@ func ActivateUserById(id int) error{
 
 
 func FindUserAndRole() models.User {
+
 	user := models.User{}
-	user.ID = 1
 	role := models.Role{}
+	user.Role.ID = 1
 	DB.Model(&user).Related(&role)
-	return  user
+	user.Role = role
+	return user
 }

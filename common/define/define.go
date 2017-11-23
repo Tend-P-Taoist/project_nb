@@ -19,9 +19,12 @@ const (
 	LoginSuccess = "登录成功"
 	ActivateSuccess = "激活成功"
 	MessageSendSuccess = "验证码发送成功"
+	UploadSuccess = "上传成功"
 )
 
 const (
 	EmailPattern = `^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$`
 	PhonePattern = `^1\d{10}$`
 )
+
+

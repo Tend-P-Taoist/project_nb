@@ -2,11 +2,11 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	 "../models"
-	"../db"
+	 "project_nb/models"
+	"project_nb/db"
 	"net/http"
-	"../common/define"
-	"../common/sender"
+	"project_nb/common/define"
+	"project_nb/common/sender"
 	"crypto/md5"
 	"encoding/hex"
 	"regexp"
@@ -260,5 +260,26 @@ func LoginHandler(c *gin.Context){
 	//登录成功
 	c.JSON(200,gin.H{"code":0,"msg":define.LoginSuccess,"data":users[0]})
 	return
+
+}
+
+
+/*个人信息修改*/
+func ModifyUserHanler(c *gin.Context){
+
+	user:= models.User{}
+	c.Bind(&user)
+
+	if err := db.ModifyUser(&user); err != nil{
+		c.AbortWithError(500,err)
+		return
+	}
+
+
+}
+
+
+/*权限更改*/
+func ChangeAuthorityHandler(c *gin.Context){
 
 }

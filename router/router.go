@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"../handler"
+	"project_nb/handler"
 )
 
 
@@ -18,10 +18,15 @@ func Route( engine *gin.Engine){
 	//模板路径
 	//engine.LoadHTMLGlob("../view/templete/**")
 
-	engine.POST("/register",handler.RegisterHandler)
-	engine.POST("/registeremail",handler.RegisterByEmailHandler)
-	engine.GET("/activate/:uuid",handler.ActivateAccountHandler)
-	engine.POST("/login",handler.LoginHandler)
-	engine.GET("/sendMessage/:to",handler.SendCodeHandler)
+
+	router := engine.Group("/app")
+
+		router.POST("/register",handler.RegisterHandler)
+		router.POST("/registeremail",handler.RegisterByEmailHandler)
+		router.GET("/activate/:uuid",handler.ActivateAccountHandler)
+		router.POST("/login",handler.LoginHandler)
+		router.GET("/sendMessage/:to",handler.SendCodeHandler)
+		router.POST("/upload",handler.UploadHanler)
+
 }
 

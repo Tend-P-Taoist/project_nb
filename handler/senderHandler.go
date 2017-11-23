@@ -2,9 +2,9 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"../common/define"
-	"../common/sender"
-	"../db"
+	"project_nb/common/define"
+	"project_nb/common/sender"
+	"project_nb/db"
 	"strings"
 	"regexp"
 	"math/rand"

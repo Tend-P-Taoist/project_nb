@@ -22,12 +22,13 @@ type User struct {
 	HeadPic string
 	Active bool
 	Level int
-	Roles []Role `gorm:"many2many:user_roles;"`
+	//Roles []Role `gorm:"many2many:user_roles;"`
 	RoleID int
-
+	Role Role
 
 }
 
 func (u User)TableName() string{
 	return "user"
 }
+
