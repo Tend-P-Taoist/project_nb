@@ -254,6 +254,9 @@ func LoginHandler(c *gin.Context){
 		return
 	}
 
+	//删除验证码
+	db.Redis.Do("DEL",account)
+
 	//登录成功
 	c.JSON(200,gin.H{"code":0,"msg":define.LoginSuccess,"data":users[0]})
 	return

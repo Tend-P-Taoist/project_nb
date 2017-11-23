@@ -21,6 +21,10 @@ type User struct {
 	BirthDay *time.Time
 	HeadPic string
 	Active bool
+	Level int
+	Roles []Role `gorm:"many2many:user_roles;"`
+	RoleID int
+
 
 }
 

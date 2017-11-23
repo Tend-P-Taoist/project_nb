@@ -4,6 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"../models"
+	"os/user"
 )
 
 var DB *gorm.DB
@@ -16,6 +17,7 @@ func init()  {
 	//初始化数据库
 	if !db.HasTable(&models.User{}){
 		db.CreateTable(models.User{})
+		db.CreateTable(models.Role{})
 	}
 
 	DB = db
@@ -74,7 +76,7 @@ func FindUserByPhoneNumber(num string) ([]models.User,error){
 
 
 
-
+/*创建用户*/
 func CreateUser(user *models.User) error{
 
 	c := DB.Create(user)
@@ -82,9 +84,19 @@ func CreateUser(user *models.User) error{
 	return  c.Error
 }
 
+/*账号激活*/
 func ActivateUserById(id int) error{
 
 	c := DB.Model(&models.User{}).Where("id = ?",id).Update("active",true)
 
 	return c.Error
+}
+
+
+func FindUserAndRole() models.User {
+	user := models.User{}
+	user.ID = 1
+	role := models.Role{}
+	DB.Model(&user).Related(&role)
+	return  user
 }
