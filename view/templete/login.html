@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script>
+        function login() {
+            var account = document.getElementById("account").value
+            var password = document.getElementsByName("password").value
+
+            alert(account)
+            alert(password)
+
+        }
+    </script>
+    <title>登录</title>
+</head>
+<body>
+    <div style=";height: 630px;background-image: url('../images/login_background.jpg');align-content: center;padding-top: 200px;">
+
+    <div id="login" class=""  style="padding: 5px;border-radius: 5px;box-shadow: 4px 4px 10px black;margin:auto;border: 1px black; background: white ; width:300px; height:150px; box-shadow:antiquewhite;">
+        <form onsubmit="login()"></form>
+            <input placeholder="请输入用户名" style="width: 290px;height: 45px;border: transparent" id="account">
+            <input placeholder="请输入密码" style="margin-top: 3px;width: 290px;height: 45px;border: transparent"; id="password">
+
+            <input type="button" value="Submit" ONCLICK="login()">
+
+
+
+    </div>
+    </div>
+</body>
+</html>

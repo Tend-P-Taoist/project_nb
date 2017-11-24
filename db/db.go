@@ -98,12 +98,3 @@ func ActivateUserById(id int) error{
 }
 
 
-func FindUserAndRole() models.User {
-
-	user := models.User{}
-	role := models.Role{}
-	user.Role.ID = 1
-	DB.Model(&user).Related(&role)
-	user.Role = role
-	return user
-}

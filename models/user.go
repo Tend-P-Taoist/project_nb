@@ -14,7 +14,7 @@ type User struct {
 	Salt string
 	Account string
 	Password string
-	PhoneNumber string
+	PhoneNumber string //`gorm:"unique_index";`
 	Email string
 	Age int
 	Gender int

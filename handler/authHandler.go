@@ -21,18 +21,18 @@ func AuthHandler(c *gin.Context){
 
 	token := c.GetHeader("token")
 
-	userName,err := db.Redis.Do("GET",token)
+	user,err := db.Redis.Do("GET",token)
 	if err != nil {
-		c.AbortWithError(200,err)
+		c.AbortWithError(500,err)
 		return
 	}
 
-	if userName == nil {
-		c.AbortWithStatusJSON(http.StatusForbidden,gin.H{"message":define.UnAuthorizedError})
+	if user == nil {
+		c.AbortWithStatusJSON(http.StatusForbidden,gin.H{"code":403,"msg":define.UnAuthorizedError})
 		return
 	}
 
-	c.Status(200)
+	c.Next()
 }
 
 /*注册用户(用户密码注册)*/
@@ -49,7 +49,6 @@ func RegisterHandler(c *gin.Context){
 	}
 
 	users,err := db.FindUserByAccount(user.Account)
-
 
 	if err != nil {
 		c.AbortWithError(500,err)

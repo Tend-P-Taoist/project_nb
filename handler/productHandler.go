@@ -2,4 +2,8 @@ package handler
 
 import "github.com/gin-gonic/gin"
 
-func AddProductHandler(c *gin.Context){}
+/*添加商品*/
+func AddProductHandler(c *gin.Context){
+
+
+}
