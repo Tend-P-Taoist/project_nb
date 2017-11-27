@@ -29,6 +29,15 @@ func Route( engine *gin.Engine){
 		router.POST("/login", handler.LoginHandler)
 		router.GET("/sendMessage/:to", handler.SendCodeHandler)
 		router.POST("/upload", handler.UploadHanler)
+
+	}
+
+
+	admin := engine.Group("admin")
+	{
+		admin.GET("portal",handler.LoadPortal)
 	}
 }
+
+
 
