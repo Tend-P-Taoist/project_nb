@@ -22,7 +22,6 @@ func main() {
 	engine := gin.Default()
 
 
-
 	//配置路由
 	router.Route(engine)
 
